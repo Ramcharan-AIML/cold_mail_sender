@@ -1,0 +1,7 @@
+"timestamp","recipient_email","company","role","subject","status","error_message"
+"2026-06-01T18:02:01.307259Z","yachamaneniramcharan49@gmail.com","Acme AI","Backend Engineering Intern","Quick note on the Backend Engineering Intern role at Acme AI","drafted",""
+"2026-06-01T18:02:02.162499Z","david.carter@stellarhealth.org","Stellar Health","Junior Data Engineer","Quick note on the Junior Data Engineer role at Stellar Health","sent",""
+"2026-06-01T18:02:04.781943Z","evelyn@cloudscale.io","CloudScale","Associate Developer","Quick note on the Associate Developer role at CloudScale","skipped",""
+"2026-06-01T18:02:05.658149Z","arjun@finflow.tech","FinFlow Tech","Backend Analyst","Quick note on the Backend Analyst role at FinFlow Tech","drafted",""
+"2026-06-01T18:02:06.727207Z","sarah@cyberdyne.systems","Cyberdyne Systems","Automation Engineer","Quick note on the Automation Engineer role at Cyberdyne Systems","sent",""
+"2026-06-01T18:25:07.876441Z","evelyn@cloudscale.io","CloudScale","Associate Developer","Quick note on the Associate Developer role at CloudScale","sent",""
