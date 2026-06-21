@@ -281,6 +281,22 @@ with tab_ingest:
     st.subheader("📂 Targets Directory Registry")
     st.markdown("Displaying all targets loaded from the current workspace config file.")
     
+    # Generate CSV template bytes for download
+    sample_df = pd.DataFrame([{
+        "recipient_email": "recruiter@company.com",
+        "company": "ExampleCorp",
+        "role": "Software Engineer",
+        "candidate_name": "Jane Doe",
+        "candidate_background": "5 years of Python experience developing web APIs.",
+        "recipient_name": "Alex",
+        "job_url": "https://company.com/jobs/123",
+        "portfolio_url": "https://janedoe.dev",
+        "personalization_note": "I love ExampleCorp's open-source developer tooling.",
+        "linkedin_url": "https://linkedin.com/in/janedoe",
+        "resume_link": "https://janedoe.dev/resume.pdf"
+    }])
+    sample_csv = sample_df.to_csv(index=False).encode('utf-8')
+
     col_file_info, col_upload = st.columns(2)
     
     with col_file_info:
@@ -289,6 +305,13 @@ with tab_ingest:
             st.success(f"Found input file: `{cfg.input_path}`")
         else:
             st.error(f"Input file not found at: `{cfg.input_path}`")
+        st.download_button(
+            label="📥 Download Template CSV",
+            data=sample_csv,
+            file_name="targets_template.csv",
+            mime="text/csv",
+            use_container_width=True
+        )
             
     with col_upload:
         # File upload stretch goal
@@ -366,6 +389,16 @@ with tab_audit:
                 
             # Chronological reverse order display
             st.dataframe(df_filtered.iloc[::-1], use_container_width=True)
+            
+            # Provide a download button for the logs
+            csv_data = df_logs.to_csv(index=False).encode('utf-8')
+            st.download_button(
+                label="📥 Download Historical Audit Trail (CSV)",
+                data=csv_data,
+                file_name="outreach_log.csv",
+                mime="text/csv",
+                use_container_width=True
+            )
             
         except Exception as e:
             st.error(f"Failed to read CSV audit logs: {e}")
