@@ -2,7 +2,7 @@
 
 This document outlines the deployment strategy for **The Closer** (Streamlit-based Cold Outreach Console). 
 
-Since the project features an interactive Streamlit UI (`ui/app.py`), **Streamlit can absolutely be used to deploy this project**. Streamlit is the recommended framework for hosting the frontend application.
+Since the project features an interactive Streamlit UI, we have created a **`streamlit_app.py`** in the root of the project that imports and runs **`ui/app.py`**. Streamlit is the recommended framework for hosting the frontend application.
 
 ---
 
@@ -46,7 +46,7 @@ Streamlit Community Cloud is a free hosting platform provided by Streamlit that 
 2. Go to [share.streamlit.io](https://share.streamlit.io/) and log in with your GitHub account.
 3. Click **New App**.
 4. Select your repository, branch (`main`), and set the main file path to:
-   `ui/app.py`
+   `streamlit_app.py`
 5. Click **Advanced settings...** to configure your secrets. Paste the `.env` contents in the secrets editor using TOML format:
    ```toml
    SMTP_HOST = "smtp.gmail.com"
@@ -101,7 +101,7 @@ EXPOSE 8501
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
 
 # Run streamlit when the container launches
-CMD ["streamlit", "run", "ui/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
 ```
 
 ### Setup on Render
@@ -142,7 +142,7 @@ After=network.target
 [Service]
 User=ubuntu
 WorkingDirectory=/var/www/the-closer
-ExecStart=/var/www/the-closer/venv/bin/streamlit run ui/app.py --server.port=8501 --server.address=127.0.0.1
+ExecStart=/var/www/the-closer/venv/bin/streamlit run streamlit_app.py --server.port=8501 --server.address=127.0.0.1
 Restart=always
 
 [Install]
